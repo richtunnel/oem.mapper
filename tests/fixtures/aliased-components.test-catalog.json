@@ -1,0 +1,40 @@
+{
+  "_fixtureNote": [
+    "TEST-ONLY catalog. Not a seed dataset, not shipped in src/data, and not consulted by the pipeline.",
+    "Two components deliberately share the alias 'door mirror', so the matcher's AMBIGUOUS path (a genuine tie) can be tested without weakening the real catalog.",
+    "The third component exists so a phrase can match one component strongly and another weakly, proving ambiguity requires a tie rather than any multi-match."
+  ],
+  "components": [
+    {
+      "id": "test_mirror_assembly",
+      "displayName": "Test mirror assembly",
+      "aliases": ["door mirror", "side mirror"],
+      "systems": ["adas"],
+      "nearbySensors": ["blind_spot_radar"],
+      "position": "SIDE",
+      "illustrative": true
+    },
+    {
+      "id": "test_glass_panel",
+      "displayName": "Test glass panel",
+      "aliases": ["door mirror", "glass panel"],
+      "systems": ["glass"],
+      "nearbySensors": ["front_camera"],
+      "position": "SIDE",
+      "illustrative": true
+    },
+    {
+      "id": "test_mirror_glass",
+      "displayName": "Test mirror glass",
+      "aliases": ["mirror glass"],
+      "systems": ["glass"],
+      "nearbySensors": [],
+      "position": "SIDE",
+      "illustrative": true
+    }
+  ],
+  "sensors": [
+    { "id": "blind_spot_radar", "displayName": "Blind-spot radar (test)", "illustrative": true },
+    { "id": "front_camera", "displayName": "Forward camera (test)", "illustrative": true }
+  ]
+}
