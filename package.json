@@ -1,0 +1,20 @@
+{
+  "name": "vehicle-recalibration-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vehicle repair impact / recalibration decision engine (MVP). Deterministic, auditable OEM-procedure decisioning over normalized repair estimates. All seeded OEM data is ILLUSTRATIVE and UNVERIFIED.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "main": "src/api/server.js",
+  "scripts": {
+    "start": "node src/api/server.js",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "test:unit": "node --test \"tests/unit/**/*.test.js\"",
+    "test:integration": "node --test \"tests/integration/**/*.test.js\""
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "license": "UNLICENSED"
+}
