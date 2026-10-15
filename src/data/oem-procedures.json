@@ -1,0 +1,226 @@
+{
+  "_provenance": {
+    "datasetId": "ILLUSTRATIVE-OEM-PROCEDURES-001",
+    "label": "ILLUSTRATIVE / UNVERIFIED",
+    "verifiedRuleCount": 0,
+    "vehicleKeys": ["EXAMPLE-2024-SUV"],
+    "warning": "NO REAL OEM PROCEDURE DATA EXISTS IN THIS REPOSITORY. Every rule below is invented to exercise the data model and the decision logic. Every source documentId begins with ILLUSTRATIVE-DOC- and is fictional. No rule is, or may be, marked VERIFIED. Nothing here states or implies a real calibration requirement for any real vehicle.",
+    "promotionCriteria": "See docs/OEM-DATA.md — a legitimate vehicle-specific source (OEM service information subscription, licensed service-information data, or expert-reviewed repair cases) with document id, revision, section, and page, checked against the exact year/make/model/trim/sensor package."
+  },
+  "rules": [
+    {
+      "id": "ILL-PROC-101",
+      "ruleStatus": "ILLUSTRATIVE",
+      "verified": false,
+      "procedure": "RADAR_AIMING_AND_STATIC_CALIBRATION",
+      "procedureType": "STATIC_CALIBRATION",
+      "description": "Static radar calibration after radar removal/install.",
+      "applicability": {
+        "vehicleKey": "EXAMPLE-2024-SUV",
+        "triggerComponent": "front_radar",
+        "operations": ["REMOVE_INSTALL", "REPLACE", "ADJUST"],
+        "procedureType": null
+      },
+      "logic": "ANY",
+      "conditions": [],
+      "reason": "The radar sensor itself was removed, replaced, or adjusted. The measurement plane the sensor was set to at the factory has been disturbed, so the applicable OEM procedure must be retrieved and followed.",
+      "evidenceRequired": ["Estimate line showing the radar operation", "OEM procedure for the exact sensor part number and vehicle configuration"],
+      "source": {
+        "documentId": "ILLUSTRATIVE-DOC-001",
+        "revision": "ILL-R1",
+        "section": "ADAS procedures",
+        "fictional": true
+      }
+    },
+    {
+      "id": "ILL-PROC-102",
+      "ruleStatus": "ILLUSTRATIVE",
+      "verified": false,
+      "procedure": "RADAR_FAULT_AND_ALIGNMENT_CHECK",
+      "procedureType": "DIAGNOSTIC_SCAN",
+      "description": "Post-repair radar fault-code and alignment check.",
+      "applicability": {
+        "vehicleKey": "EXAMPLE-2024-SUV",
+        "triggerComponent": "front_radar",
+        "operations": ["REMOVE_INSTALL", "REPLACE", "ADJUST"],
+        "procedureType": null
+      },
+      "logic": "ANY",
+      "conditions": [
+        { "field": "radarDisconnected", "operator": "equals", "value": true, "label": "Radar electrical connector was disconnected" },
+        { "field": "mountingBracketDisturbed", "operator": "equals", "value": true, "label": "Radar mounting bracket was disturbed" },
+        { "field": "wheelAlignmentPerformed", "operator": "equals", "value": true, "label": "Wheel alignment was performed on this repair order" }
+      ],
+      "reason": "A disconnected connector, a disturbed mounting bracket, or a wheel alignment can each change what the radar sees after a repair; the OEM procedure defines which diagnostic check applies.",
+      "evidenceRequired": ["Whether the connector was disconnected", "Whether the radar bracket was disturbed", "Whether wheel alignment was performed"],
+      "source": {
+        "documentId": "ILLUSTRATIVE-DOC-003",
+        "revision": "ILL-R2",
+        "section": "Radar diagnostics",
+        "fictional": true
+      }
+    },
+    {
+      "id": "ILL-PROC-103",
+      "ruleStatus": "ILLUSTRATIVE",
+      "verified": false,
+      "procedure": "FORWARD_CAMERA_STATIC_CALIBRATION",
+      "procedureType": "STATIC_CALIBRATION",
+      "description": "Static forward-camera calibration after glass replacement.",
+      "applicability": {
+        "vehicleKey": "EXAMPLE-2024-SUV",
+        "triggerComponent": "windshield",
+        "operations": ["REPLACE", "REPLACE_GLASS"],
+        "procedureType": null
+      },
+      "logic": "ALL",
+      "conditions": [
+        { "field": "sensorAffected", "operator": "equals", "value": true, "label": "A sensor mounted to the glass is in the affected set for this line" },
+        { "field": "glassRemovedFromSensorBracket", "operator": "not_equals", "value": false, "label": "Glass was not removed without disturbing the sensor bracket" }
+      ],
+      "reason": "Windshield replacement moves or re-seats the glass that the forward camera is aimed through; where a camera is present, the OEM procedure defines a static calibration using a target board.",
+      "evidenceRequired": ["Sensor package for the vehicle configuration", "Whether the camera bracket was disturbed", "Static calibration target availability"],
+      "source": {
+        "documentId": "ILLUSTRATIVE-DOC-002",
+        "revision": "ILL-R1",
+        "section": "Windshield replacement",
+        "fictional": true
+      }
+    },
+    {
+      "id": "ILL-PROC-104",
+      "ruleStatus": "ILLUSTRATIVE",
+      "verified": false,
+      "procedure": "FORWARD_CAMERA_DYNAMIC_CALIBRATION",
+      "procedureType": "DYNAMIC_CALIBRATION",
+      "description": "Dynamic (drive-cycle) forward-camera calibration.",
+      "applicability": {
+        "vehicleKey": "EXAMPLE-2024-SUV",
+        "triggerComponent": "windshield",
+        "operations": ["REPLACE", "REPLACE_GLASS"],
+        "procedureType": null
+      },
+      "logic": "ANY",
+      "conditions": [
+        { "field": "sensorAffected", "operator": "equals", "value": true, "label": "A sensor mounted to the glass is in the affected set for this line" },
+        { "field": "staticCalibrationNotPossible", "operator": "equals", "value": true, "label": "Static calibration cannot be performed in the shop" }
+      ],
+      "reason": "Some configurations require a drive-cycle calibration instead of, or in addition to, a static one; the OEM procedure for the exact configuration decides which.",
+      "evidenceRequired": ["OEM calibration method for the configuration", "Shop capability for the required static target setup"],
+      "source": {
+        "documentId": "ILLUSTRATIVE-DOC-002",
+        "revision": "ILL-R1",
+        "section": "Windshield replacement",
+        "fictional": true
+      }
+    },
+    {
+      "id": "ILL-PROC-105",
+      "ruleStatus": "ILLUSTRATIVE",
+      "verified": false,
+      "procedure": "FRONT_RADAR_INSPECTION_AFTER_COVER_REPAIR",
+      "procedureType": "INSPECTION",
+      "description": "Inspect the radar mounting and aim after front bumper cover work.",
+      "applicability": {
+        "vehicleKey": "EXAMPLE-2024-SUV",
+        "triggerComponent": "front_bumper_cover",
+        "operations": ["REPLACE", "REPAIR", "REFINISH", "REMOVE_INSTALL"],
+        "procedureType": null
+      },
+      "logic": "ANY",
+      "conditions": [
+        { "field": "radarMountedToCoverStructure", "operator": "equals", "value": true, "label": "Radar mounting is attached to the structure disturbed by this line" },
+        { "field": "impactSeverity", "operator": "in", "value": ["MODERATE", "SEVERE"], "label": "Repair was triggered by a moderate or severe impact" }
+      ],
+      "reason": "Cover work can leave the radar's bracket or aim out of position even when the sensor was not replaced; an inspection determines whether a calibration procedure is then needed.",
+      "evidenceRequired": ["Radar mounting location for the configuration", "Impact severity band from the repair order"],
+      "source": {
+        "documentId": "ILLUSTRATIVE-DOC-004",
+        "revision": "ILL-R3",
+        "section": "Front body repairs and sensor aim",
+        "fictional": true
+      }
+    },
+    {
+      "id": "ILL-PROC-106",
+      "ruleStatus": "ILLUSTRATIVE",
+      "verified": false,
+      "procedure": "FRONT_ULTRASONIC_INITIALIZATION",
+      "procedureType": "INITIALIZATION",
+      "description": "Initialize front parking sensors after cover replacement.",
+      "applicability": {
+        "vehicleKey": "EXAMPLE-2024-SUV",
+        "triggerComponent": "front_bumper_cover",
+        "operations": ["REPLACE", "REMOVE_INSTALL"],
+        "procedureType": null
+      },
+      "logic": "ANY",
+      "conditions": [
+        { "field": "ultrasonicSensorsTransferred", "operator": "equals", "value": true, "label": "Parking sensors were transferred from the old cover to the new one" },
+        { "field": "coverReplacedWithNonOemPart", "operator": "equals", "value": true, "label": "Cover was replaced with a non-OEM part" }
+      ],
+      "reason": "Transferring or replacing parking sensors changes the reference surface they measure from; the OEM procedure defines any required initialization.",
+      "evidenceRequired": ["Whether sensors were transferred", "Whether the replacement cover is OEM"],
+      "source": {
+        "documentId": "ILLUSTRATIVE-DOC-005",
+        "revision": "ILL-R1",
+        "section": "Park assist",
+        "fictional": true
+      }
+    },
+    {
+      "id": "ILL-PROC-107",
+      "ruleStatus": "ILLUSTRATIVE",
+      "verified": false,
+      "procedure": "FORWARD_CAMERA_INITIALIZATION_AFTER_CAMERA_REPLACE",
+      "procedureType": "INITIALIZATION",
+      "description": "Initialize a replaced forward camera before calibration.",
+      "applicability": {
+        "vehicleKey": "EXAMPLE-2024-SUV",
+        "triggerComponent": "front_camera",
+        "operations": ["REPLACE", "REMOVE_INSTALL"],
+        "procedureType": null
+      },
+      "logic": "ALL",
+      "conditions": [
+        { "field": "componentReplaced", "operator": "equals", "value": true, "label": "The camera itself was replaced (not just removed and re-installed)" },
+        { "field": "calibrationToolAvailable", "operator": "not_equals", "value": false, "label": "OEM calibration equipment is not known to be unavailable" }
+      ],
+      "reason": "A new camera module has no stored aim; initialization and then calibration are required in the order the OEM procedure specifies.",
+      "evidenceRequired": ["Whether the camera was replaced", "Whether OEM calibration equipment is available"],
+      "source": {
+        "documentId": "ILLUSTRATIVE-DOC-006",
+        "revision": "ILL-R2",
+        "section": "Camera initialization",
+        "fictional": true
+      }
+    },
+    {
+      "id": "ILL-PROC-108",
+      "ruleStatus": "ILLUSTRATIVE",
+      "verified": false,
+      "procedure": "BLIND_SPOT_RADAR_CHECK_AFTER_MIRROR_WORK",
+      "procedureType": "DIAGNOSTIC_SCAN",
+      "description": "Check blind-spot radar after side mirror replacement.",
+      "applicability": {
+        "vehicleKey": "EXAMPLE-2024-SUV",
+        "triggerComponent": "side_mirror_assembly",
+        "operations": ["REPLACE", "REMOVE_INSTALL"],
+        "procedureType": null
+      },
+      "logic": "ALL",
+      "conditions": [
+        { "field": "blindSpotRadarInMirror", "operator": "equals", "value": true, "label": "Blind-spot radar is mounted in the mirror housing on this configuration" },
+        { "field": "mirrorReplacedWithNonOemPart", "operator": "equals", "value": false, "label": "Mirror was replaced with an OEM part" }
+      ],
+      "reason": "Where the radar lives in the mirror housing, replacing the housing moves the radar; the OEM procedure defines the check and any following calibration.",
+      "evidenceRequired": ["Radar mounting location for the configuration", "Part source (OEM vs non-OEM)"],
+      "source": {
+        "documentId": "ILLUSTRATIVE-DOC-007",
+        "revision": "ILL-R1",
+        "section": "Blind spot monitoring",
+        "fictional": true
+      }
+    }
+  ]
+}

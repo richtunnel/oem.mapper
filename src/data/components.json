@@ -1,0 +1,91 @@
+{
+  "_provenance": {
+    "datasetId": "ILLUSTRATIVE-COMPONENTS-001",
+    "label": "ILLUSTRATIVE / UNVERIFIED",
+    "verified": false,
+    "warning": "Invented component/vehicle-system relationships for a fictional vehicle configuration. Not derived from any OEM part catalog, fitment database, or service information. Do not present any output built from this dataset as fact about a real vehicle.",
+    "promotionCriteria": "See docs/OEM-DATA.md — a real component catalog (OEM EPC or licensed aftermarket data) with documented aliases and a sensor/system relationship model."
+  },
+  "components": [
+    {
+      "id": "front_bumper_cover",
+      "displayName": "Front bumper cover",
+      "aliases": ["front bumper cover", "bumper fascia", "bumper cover", "front fascia", "front bumper"],
+      "systems": ["front_body"],
+      "nearbySensors": ["front_radar", "front_camera", "front_ultrasonic"],
+      "position": "FRONT",
+      "illustrative": true
+    },
+    {
+      "id": "front_grille",
+      "displayName": "Front grille",
+      "aliases": ["front grille", "grille assembly", "grille", "radiator grille"],
+      "systems": ["front_body"],
+      "nearbySensors": ["front_radar", "front_camera"],
+      "position": "FRONT",
+      "illustrative": true
+    },
+    {
+      "id": "front_radar",
+      "displayName": "Front radar sensor",
+      "aliases": ["front radar sensor", "front radar", "cruise radar", "radar sensor", "acc radar"],
+      "systems": ["adas", "adaptive_cruise"],
+      "nearbySensors": ["front_radar"],
+      "position": "FRONT",
+      "illustrative": true
+    },
+    {
+      "id": "windshield",
+      "displayName": "Windshield",
+      "aliases": ["windshield", "front glass", "windshield glass", "windscreen"],
+      "systems": ["glass"],
+      "nearbySensors": ["front_camera", "rain_light_sensor"],
+      "position": "FRONT_GLASS",
+      "illustrative": true
+    },
+    {
+      "id": "front_camera",
+      "displayName": "Forward-facing camera",
+      "aliases": ["forward camera", "windshield camera", "forward facing camera", "lane camera"],
+      "systems": ["adas", "lane_assist"],
+      "nearbySensors": ["front_camera"],
+      "position": "FRONT_GLASS",
+      "illustrative": true
+    },
+    {
+      "id": "front_ultrasonic",
+      "displayName": "Front ultrasonic parking sensor",
+      "aliases": ["front ultrasonic sensor", "parking sensor", "ultrasonic sensor", "park assist sensor"],
+      "systems": ["adas", "park_assist"],
+      "nearbySensors": ["front_ultrasonic"],
+      "position": "FRONT",
+      "illustrative": true
+    },
+    {
+      "id": "headlamp_assembly",
+      "displayName": "Headlamp assembly",
+      "aliases": ["headlamp assembly", "headlamp", "headlight", "lamp assembly"],
+      "systems": ["lighting"],
+      "nearbySensors": ["forward_lighting_camera"],
+      "position": "FRONT",
+      "illustrative": true
+    },
+    {
+      "id": "side_mirror_assembly",
+      "displayName": "Side mirror assembly",
+      "aliases": ["side mirror assembly", "door mirror", "mirror assembly", "side view mirror"],
+      "systems": ["adas", "blind_spot"],
+      "nearbySensors": ["blind_spot_radar"],
+      "position": "SIDE",
+      "illustrative": true
+    }
+  ],
+  "sensors": [
+    { "id": "front_radar", "displayName": "Front radar sensor", "illustrative": true },
+    { "id": "front_camera", "displayName": "Forward-facing camera", "illustrative": true },
+    { "id": "front_ultrasonic", "displayName": "Front ultrasonic sensors", "illustrative": true },
+    { "id": "blind_spot_radar", "displayName": "Blind-spot radar", "illustrative": true },
+    { "id": "rain_light_sensor", "displayName": "Rain/light sensor", "illustrative": true },
+    { "id": "forward_lighting_camera", "displayName": "Forward lighting camera", "illustrative": true }
+  ]
+}
