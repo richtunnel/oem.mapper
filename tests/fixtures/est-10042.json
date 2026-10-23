@@ -1,0 +1,66 @@
+{
+  "_fixtureNote": [
+    "EST-10042 from the spec (SPEC §2).",
+    "L1-L4 are the spec's own lines and operations.",
+    "L5 and L6 were ADDED by this MVP so the end-to-end report exercises every outcome category honestly:",
+    "  L5 'Left rear quarter panel' is deliberately absent from the (illustrative) component catalog, so the UNRESOLVED / needs-human-review path is visible instead of silently dropped.",
+    "  L6 'Front fascia' carries one shop-supplied fact (impactSeverity) so the INSPECTION_REQUIRED path can be reached from a known fact rather than inferred.",
+    "L1 carries no facts on purpose, so it demonstrates CONDITIONAL / INSUFFICIENT_DATA with the missing fields named.",
+    "Vehicle identity is the spec's placeholder: no VIN decode provider exists in this MVP, so the configuration is never reported as verified."
+  ],
+  "estimateId": "EST-10042",
+  "vehicle": {
+    "vin": "REPLACE_WITH_VALID_VIN",
+    "year": 2024,
+    "make": "Example",
+    "model": "SUV",
+    "trim": "ADAS-equipped configuration"
+  },
+  "lines": [
+    {
+      "lineId": "L1",
+      "description": "Front bumper cover",
+      "operation": "REPLACE",
+      "partNumber": null,
+      "position": "FRONT"
+    },
+    {
+      "lineId": "L2",
+      "description": "Front grille",
+      "operation": "REPLACE",
+      "partNumber": null,
+      "position": "FRONT"
+    },
+    {
+      "lineId": "L3",
+      "description": "Front radar sensor",
+      "operation": "R&I",
+      "partNumber": null,
+      "position": "FRONT"
+    },
+    {
+      "lineId": "L4",
+      "description": "Windshield",
+      "operation": "Replace",
+      "partNumber": null,
+      "position": "FRONT_GLASS"
+    },
+    {
+      "lineId": "L5",
+      "description": "Left rear quarter panel",
+      "operation": "REPAIR",
+      "partNumber": null,
+      "position": "REAR"
+    },
+    {
+      "lineId": "L6",
+      "description": "Front fascia",
+      "operation": "REFINISH",
+      "partNumber": null,
+      "position": "FRONT",
+      "facts": {
+        "impactSeverity": "MODERATE"
+      }
+    }
+  ]
+}
